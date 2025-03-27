@@ -3,12 +3,13 @@
 import {CgGym} from "react-icons/cg";
 import IconsTooltip from "@/components/IconsTooltip";
 import {useState} from "react";
+import create_icons from "@/utils/icons_util";
 
 export default function AddHabit() {
 
     const [habitName, setHabitName] = useState("");
     const [toolTip, setToolTip] = useState(true);
-    const [iconName, setIconName] = useState("");
+    const [iconName, setIconName] = useState("gym");
 
     return (
         <div className="flex flex-col p-8 w-3/5 gap-6 border rounded-md">
@@ -22,11 +23,11 @@ export default function AddHabit() {
                 <div className="flex flex-row gap-2">
                     <input type="text" className="border rounded-md w-3/5 px-2 py-1 " value={habitName} onChange={(e) => setHabitName(e.target.value)} />
                     <button className="border rounded-md px-2 py-1" onClick={()=>setToolTip(!toolTip)}>
-                        <CgGym />
+                        {create_icons(iconName)}
                     </button>
                 </div>
                 <div className={`absolute bg-white w-1/4  top-[20%] left-[50%] ${toolTip? "hidden" : ""}`}>
-                    <IconsTooltip />
+                    <IconsTooltip setIconName={setIconName} setToolTip={setToolTip}/>
                 </div>
             </div>
 
