@@ -2,6 +2,24 @@ import {CgArrowLeft, CgArrowRight,CgMathPlus} from "react-icons/cg";
 import Habit from "@/components/Habit";
 // ArrowLeft
 
+const data = {
+    title: "Reading a book",
+    topics : ["health","gym"]
+}
+
+const datas = [
+    {
+    title: "Reading a book",
+    topics : ["health","gym"]
+},
+    {
+        title: "Watching a movie",
+        topics : ["health","gym"]
+    },
+    {
+        title: "Reading a book",
+        topics : ["health","gym"]
+    },]
 
 export default function HabitList() {
     const current_date = new Date();
@@ -33,9 +51,9 @@ export default function HabitList() {
                 </button>
 
             </div>
-            {array.map(item => (
-                <Habit key={item}/>
-            ))}
+            {datas.map(((data,index) => (
+                <Habit key={index} data={data} />
+            )))}
         </div>
     )
 }
