@@ -40,3 +40,15 @@ body {
 .react-calendar__month-view__days__day--weekend {
   color: black !important;
 }
+
+.react-calendar {
+  border-radius: 6px;
+  padding: 4px;
+  background-color: rgb(243 244 246) !important;
+  border:none !important;
+}
+
+.react-calendar__tile--active {
+  background: #C3EBFA !important;
+  color: black !important;
+}
