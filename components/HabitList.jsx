@@ -7,10 +7,10 @@ const data = {
     topics : ["health","gym"]
 }
 
-const datas = [
+const unfiltered_datas = [
     {
     title: "Reading a book",
-    topics : ["health","gym"]
+    topics : ["health",]
 },
     {
         title: "Watching a movie",
@@ -18,12 +18,15 @@ const datas = [
     },
     {
         title: "Reading a book",
-        topics : ["health","gym"]
+        topics : ["health","gym","abstract"]
     },]
 
-export default function HabitList() {
+export default function HabitList({topic, search_title}) {
     const current_date = new Date();
     const array = [1,2,3,4]
+
+    let datas = unfiltered_datas.filter(data=> topic==="" || data.topics.includes(topic))
+    datas = datas.filter(data => search_title ==="" || data.title.includes(search_title))
     return (
         <div className="flex flex-col bg-white gap-4 p-4 border rounded-md shadow-md border-gray-100">
             <div className="flex justify-between items-center">
