@@ -35,7 +35,7 @@ export default function HabitList({topic, search_title}) {
         <div className="flex flex-col bg-white gap-4 p-4 border rounded-md shadow-md border-gray-100">
             <div className="flex justify-between items-center">
 
-                <div className="flex items-center gap-x-4">
+                <div className="flex items-center gap-x-10">
                     <div className="flex flex-col">
                         <span className="text-xl font-semibold">{get_day_name(calendar_date)}</span>
                         <span>{calendar_date.getDate()} {get_month_name(calendar_date)}, {calendar_date.getFullYear()} </span>
