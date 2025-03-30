@@ -2,7 +2,6 @@ const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export function get_day_name(date){
-    console.log(date," Util function is called");
     return days[date.getDay()];
 }
 
