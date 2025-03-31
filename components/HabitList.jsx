@@ -1,6 +1,6 @@
 import {CgArrowLeft, CgArrowRight,CgMathPlus} from "react-icons/cg";
 import Habit from "@/components/Habit";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {DateContext} from "@/context/DateContext";
 import {get_day_name, get_month_name} from "@/utils/date_util";
 
@@ -12,24 +12,32 @@ const data = {
 }
 
 const unfiltered_datas = [
-    {
-    title: "Reading a book",
-    topics : ["health",]
-},
-    {
-        title: "Watching a movie",
-        topics : ["health","gym"]
+        {
+            id:0,
+            title: "Reading a book",
+            topics : ["health",]
     },
-    {
-        title: "Reading a book",
-        topics : ["health","gym","abstract"]
-    },]
+        {
+            id: 1,
+            title: "Watching a movie",
+            topics : ["health","gym"]
+        },
+        {
+            id:2,
+            title: "Reading a book",
+            topics : ["health","gym","abstract"]
+        },]
 
 export default function HabitList({topic, search_title}) {
 
     const {calendar_date, setCalendarDate} = useContext(DateContext)
-    let datas = unfiltered_datas.filter(data=> topic==="" || data.topics.includes(topic))
-    datas = datas.filter(data => search_title ==="" || data.title.includes(search_title))
+    const [datas, setDatas] = useState(unfiltered_datas)
+
+
+    useEffect(() => {
+        setDatas(unfiltered_datas.filter(data => (search_title === "" || data.title.includes(search_title)) && (topic==="" || data.topics.includes(topic))))
+    },[topic, search_title])
+
 
     return (
         <div className="flex flex-col bg-white gap-4 p-4 border rounded-md shadow-md border-gray-100">
