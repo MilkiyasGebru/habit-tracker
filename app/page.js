@@ -5,6 +5,7 @@ import HabitList from "@/components/HabitList";
 import SideBar from "@/components/SideBar";
 import {useContext, useState} from "react";
 import {DateContext} from "@/context/DateContext";
+import AddHabit from "@/components/AddHabit";
 
 export default function Home() {
 
@@ -28,14 +29,16 @@ export default function Home() {
 
     return (
       <DateContext.Provider value={{calendar_date, setCalendarDate}}>
-          <div className="flex  bg-[#f7f7f7] p-4 gap-3">
-              <div className="flex flex-col w-3/4 gap-4">
+          <div className="flex  flex-col-reverse md:flex-row bg-[#f7f7f7] p-4 gap-3">
+              <div className="flex flex-col w-full md:w-3/4 gap-4">
                   <SearchArea handleSearch={handleSearch} search_title={search}/>
                   <HabitTopics  handleChangeTopic={handleChangeTopic} current_topic={topic}/>
                   <HabitList topic={`${topic !== -1? topics[topic]:""}`} search_title={search}/>
               </div>
               <SideBar />
           </div>
+          {/*<AddHabit />*/}
       </DateContext.Provider>
+
   );
 }

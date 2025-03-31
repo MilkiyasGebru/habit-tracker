@@ -12,7 +12,7 @@ const another_icons = [
 
 export default function HabitTopics({handleChangeTopic,current_topic}) {
     return (
-        <div className="flex items-center px-3 py-2 border rounded-md bg-white border-gray-100 font-thin">
+        <div className="flex items-center px-3 py-2 border rounded-md bg-white border-gray-100 font-thin flex-wrap">
 
             {another_icons.map((icon_list,index)=>
                 <div key={index} className={`flex gap-x-1 px-2 py-1 items-center ${current_topic === index? "border rounded-md bg-blue-500 text-white":""} cursor-pointer`} onClick={()=>handleChangeTopic(index)}>
