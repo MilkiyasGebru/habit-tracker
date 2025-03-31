@@ -2,7 +2,7 @@
 
 import {CgArrowDown, CgArrowUp} from "react-icons/cg";
 import IconsTooltip from "@/components/IconsTooltip";
-import {useState} from "react";
+import {useRef, useState, useEffect} from "react";
 import create_icons from "@/utils/icons_util";
 
 const area_buttons = ["Health","Gym","Food"]
@@ -14,6 +14,27 @@ export default function AddHabit() {
     const [iconName, setIconName] = useState("gym");
     const [areas, setAreas] = useState([]);
     const [displayAreas, setDisplayAreas] = useState(false)
+    const toolTipRef = useRef(null);
+
+    console.log("I am re-rendering",toolTip)
+
+    useEffect(()=>{
+        function handleClickOutside(event){
+            console.log("Hi",toolTipRef.current,)
+            if (toolTipRef.current && !toolTipRef.current.contains(event.target)){
+                console.log("Hi again",toolTip)
+                setToolTip(true);
+                console.log("tool tip has been set")
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return ()=>{
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+    },[])
 
 
     const handleActionButtonClick = (area)=>{
@@ -45,13 +66,13 @@ export default function AddHabit() {
                     </button>
                 </div>
                 <div className={`absolute bg-white w-1/4  top-[20%] left-[50%] ${toolTip? "hidden" : ""}`}>
-                    <IconsTooltip setIconName={setIconName} setToolTip={setToolTip}/>
+                    <IconsTooltip setIconName={setIconName} setToolTip={setToolTip} toolTipRef={toolTipRef}/>
                 </div>
             </div>
 
 
             {/*    Frequency of the Habit*/}
-            <div className="relative flex flex-col gap-3 z-0">
+            <div className="relative flex flex-col gap-3 ">
                 <span className="font-semibold">Repeat</span>
                 <div className="flex gap-3">
                     <button className="px-2 py-1 border rounded-md">
