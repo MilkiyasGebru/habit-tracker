@@ -10,7 +10,7 @@ const another_icons = [
     ["adidas",CgAdidas]
 ]
 
-export default function IconsTooltip({setIconName,setToolTip}){
+export default function IconsTooltip({setIconName,setToolTip, toolTipRef}){
 
     const handleIconClick = (icon_name)=>{
         setIconName(icon_name)
@@ -18,7 +18,7 @@ export default function IconsTooltip({setIconName,setToolTip}){
     }
 
     return (
-        <div className="px-3 py-2  border rounded-md mx-auto flex flex-col gap-2">
+        <div className="px-3 py-2  border rounded-md mx-auto flex flex-col gap-2" ref={toolTipRef}>
             <div className="flex justify-between">
                 <h1 className="">Choose Your Icon</h1>
                 <button>
