@@ -32,15 +32,15 @@ export default function AddHabit() {
             }
         }
 
-        document.addEventListener("mousedown", (event)=>{
+        function handleClick(event){
             handleOptionsClickOutside(event);
             handleClickOutside(event);
-        });
-        // document.addEventListener("mousedown",handleOptionsClickOutside)
+        }
+
+        document.addEventListener("mousedown", handleClick);
 
         return ()=>{
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("mousedown",handleOptionsClickOutside);
+            document.removeEventListener("mousedown", handleClick);
         }
 
     },[])
