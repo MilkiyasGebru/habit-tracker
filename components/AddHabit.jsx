@@ -15,23 +15,32 @@ export default function AddHabit() {
     const [areas, setAreas] = useState([]);
     const [displayAreas, setDisplayAreas] = useState(false)
     const toolTipRef = useRef(null);
+    const optionsRef = useRef(null);
 
     console.log("I am re-rendering",toolTip)
 
     useEffect(()=>{
         function handleClickOutside(event){
-            console.log("Hi",toolTipRef.current,)
             if (toolTipRef.current && !toolTipRef.current.contains(event.target)){
-                console.log("Hi again",toolTip)
                 setToolTip(true);
-                console.log("tool tip has been set")
             }
         }
 
-        document.addEventListener("mousedown", handleClickOutside);
+        function handleOptionsClickOutside(event){
+            if (optionsRef.current && !optionsRef.current.contains(event.target)){
+                setDisplayAreas(false)
+            }
+        }
+
+        document.addEventListener("mousedown", (event)=>{
+            handleOptionsClickOutside(event);
+            handleClickOutside(event);
+        });
+        // document.addEventListener("mousedown",handleOptionsClickOutside)
 
         return ()=>{
             document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown",handleOptionsClickOutside);
         }
 
     },[])
@@ -72,7 +81,7 @@ export default function AddHabit() {
 
 
             {/*    Frequency of the Habit*/}
-            <div className="relative flex flex-col gap-3 ">
+                <div className="relative flex flex-col gap-3 z-0">
                 <span className="font-semibold">Repeat</span>
                 <div className="flex gap-3">
                     <button className="px-2 py-1 border rounded-md">
@@ -118,7 +127,7 @@ export default function AddHabit() {
                         {displayAreas && <CgArrowUp className=""/>}
 
                     </div >
-                        <div className={`flex flex-col items-start border rounded shadow-md absolute w-full bg-white ${displayAreas? "":"hidden"}`}>
+                        <div className={`flex flex-col items-start border rounded shadow-md absolute w-full bg-white ${displayAreas? "":"hidden"}`} ref={optionsRef}>
                             {area_buttons.map((area_button_name,index) =>
                             <button className="px-4 py-1  w-full text-left hover:bg-gray-100" key={index} onClick={(e)=>{handleActionButtonClick(area_button_name)}}>
                                 {area_button_name}
