@@ -10,7 +10,7 @@ export default function HabitCalendar() {
     const {calendar_date,setCalendarDate} = useContext(DateContext)
     return (
         <div >
-            <Calendar onChange={setCalendarDate} value={calendar_date}  showNeighboringMonth={false} activeStartDate={calendar_date} />
+            <Calendar onChange={setCalendarDate} value={calendar_date}  showNeighboringMonth={false}     />
         </div>
     )
 }
