@@ -72,3 +72,8 @@ export default function HabitList({topic, search_title}) {
         </div>
     )
 }
+function DelayPromise(){
+    return new Promise(resolve => {
+        setTimeout(resolve,2000);
+    })
+}
